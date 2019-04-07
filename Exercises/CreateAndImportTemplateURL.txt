@@ -1,0 +1,15 @@
+1. Create a templates folder at the project level, and add any html pages you'd like to use for templates in there.
+2. In your views.py at app level
+    from django.views.generic import TemplateView
+
+    class [NameOfView](TemplateView):
+    template_name = '[nameOfHTMLpage].html'
+3. In your app, create another urls.py.
+    + import all of your views from your views.py with 
+        import . from views.py
+    + include the following to import your named class along with outlining an endpoint
+        path('', views.[viewName].as_view(), name='home')
+4. In your urls.py at the app level, add your path to render that View and therefore its' template.
+5. In the urls.py at the project level, add 'include' to the import for django.urls
+    + Import the URLs from the app level you've added by: 
+         path('', include('[appName].urls')),

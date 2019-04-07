@@ -1,0 +1,109 @@
+Section 1
+    Lecture 2: 
+        + 'pytz' is always installed alongside dependencies when using pip.
+        + We need to use the command pip3 when installing to match our python version (in this case 3.7.3)
+        + 'django-admin startproject [projectname]': gives you all the boilerplate code needed to start a django project.
+            - prob similar to create-react-app
+        + manage.py file: runs your project with 'python3 manage.py runserver'
+    
+    Lecture 3: 
+        + Each django application is build up using smaller apps. By itself it is nothing. 
+            - In a hypothetical using Google, searching images, Gmail, and searching text are all separate 'apps' completely independent
+        + NEVER touch __pychache__ folder files. C based files.
+        + __init__.py: usually don't touch
+        + settings.py: do NOT reveal secret key to anyone, can be dangerous for project.
+            - INSTALLED_APPS: houses the apps that we have created, and tells Python to recognize them.
+            - MIDDLEWARE: things like adding facebook authentication may require adding a couple of lines here.
+            - DATABASES: can be configured to your specific db.
+            - static files can be added later (CSS, JS, etc)
+        + urls.py: important file. First file that, when django project is run on server, requests are made to and in turn helps redirect the user to the correct url.
+            + urlpatterns: 
+        + wsgi.py: 'web service gateway interface'. don't touch this very often
+
+        We will need to continue and create apps to get our models to interact with our database, and outline views for our web interface.
+
+Section 2: Project 1 - Getting the basics done
+    + Lecture 5. Our very first django app
+        - create apps at the top level of your project along side db.sqlite3 and manage.py
+            # Run 'python3 manage.py startapp [appname]'
+        - Inside of an app, we have a slightly different file structure: 
+            # __init__.py: don't touch
+            # admin.py: built-in admin django app is already initiated at the project level.
+            # apps.py: config file for app itself (classes, definitions, etc)
+            # models.py: defines db models. config it for other things as well. Django automatically translates these to tables.
+            # test.py: mostly unit testing.
+            # views.py: handles request / response logic (when a user hits a button or gives / fetches data from db)
+
+        We will need to make our project aware of the app(s)
+    
+    + Lecture 6: Configuring new App
+        - when you create a new app, you first need to make sure that our project knows it's there
+            # add to INSTALLED_APPS array in settings.py
+            # You should also define a view, along with an HttpResponse by importing it from django.http at the top of your views.py in the app.
+        - Now we know we need to outline a URL to serve a response in our project urls.py.
+            # We can now import our views at the top of this file, and outline a path, the specific view being imported, and a name for it inside a urlpatterns array.
+                path('', views.homePageView, name='home')
+        - Last we add the app level url to the project level.
+            # import with the include method. Add something like the below to the urls array.
+                path('', include('hola.urls'))
+            # NOTE: The path outlined at the app level is ADDED onto whatever is outlined at the project level. If the path is 'home' at the app level and 'namaste' at the project level, then the path will be served when 'namaste/home' is hit.
+    
+    + Lecture 7: Project 2 and templating basics
+        - Create a project, add a templates folder, and add a view (home.html) inside
+            # What we want to do is create a basic template that can reuse other views or templates.
+        - We now need to let the app know about the templates we just created. 
+            # Go to the settings.py at the app level and add the folder to the TEMPLATES array, 'DIR' array.
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    
+    + Lecture 8: Rendering from a HTML page
+        - in views we want to start a template, so we can import 'from django.views.generic import TemplateView'
+        - We can create a class-based django url: 
+            class HomePageView(TemplateView): 
+                template_name = 'home.html'
+        - Now we need to tell our urls.py at the app level to import from views, which imports from templates.
+
+        At the project level, urls.py connects to the app level urls. At the app level, urls.py imports from views.py. views.py now looks in the templates folder to find html templates.
+
+    + Lecture 9: Adding an About Us page
+        - create a new template with HTML and name accordingly.
+        - Go into views.py and create a separate class for this view template.
+        - Go to urls.py at app level and add the URL, serving the class you just created accordingly from the urlpatterns array
+
+    + Lecture 10: Adding Contact Us page
+
+    + Lecture 11: Extending pre-build templates
+        - Something like a navbar will need to redirect links to other URLs.
+            # Use anchor tags, and in the href quotes: {% url [name of Url as stated in urls.py] %}
+            # Here, 'url' is essentially a command, with the name of the url as an argument.
+            # You also want to put this in the html file(s) wherever the navbar in this case will need to be positioned on the other templates.
+                at the top (or wherever you'd like the reused template HTML to go) of home.html, this will look like: 
+                    {% extends '[path to reused html template]' %}
+            # Last, the below code serves to reserve space in the template(..?) based on where these are going to be used.
+            {%  block content %}
+                [html for the page extending navbar]
+            {% endblock %}
+
+            NOTE: if you don't put the HTML within the block content tags like above, the HTML will not get rendered.
+
+Section 4: Project 3 - Interaction with Database
+    Lecture 12. Setting up command project
+        - You will be writing all of your database commands (fetch, insert, ) in the models.py, then incorporate that in the admin.py.
+    
+    Lecture 13. Creating our first model for sqlite3
+        - The purpose of the migrate command is to create database tables based off of Django's default settings.
+            + run python3 manage.py migrate the first time.
+        - When you add a model to models.py, you need to re-run a migration with 
+            python3 manage.py makemigrations cmdr
+            python3 manage.py migrate cmdr
+        - Generating admin credentials
+            + 'python3 manage.py createsuperuser'
+    
+    Lecture 14: Registering models to admin
+        - After creating a model in models.py, you need to register it in the app admin file like so:
+            from .models import [modelClassName]
+            admin.site.register([modelClassName])
+        - After adding the above to admin.py, you can log into the admin pages using your super user credentials, and actually manually add instances of your class. 
+
+        NOTE THAT THIS IS A SINGLE PAGE APPLICATION
+
+    Lecture 15: Create Read Update and Delete from Database
