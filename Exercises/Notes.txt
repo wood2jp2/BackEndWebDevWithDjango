@@ -107,3 +107,5 @@ Section 4: Project 3 - Interaction with Database
         NOTE THAT THIS IS A SINGLE PAGE APPLICATION
 
     Lecture 15: Create Read Update and Delete from Database
+        - It's important to note that similar to handlebars or React mapping, we can add logic to our templates to loop and render HTML elements based off data from a database (or whatever else)
+        - Remember that {% %} essentially 'escapes' the html, put whatever you want to repeat within that, and end it with {% endfor %}

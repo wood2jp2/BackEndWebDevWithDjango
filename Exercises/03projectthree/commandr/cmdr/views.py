@@ -1,5 +1,7 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from .models import Cmdr
 
 # Create your views here.
-class HomePageView(TemplateView):
-    template_name = 'button.html'
+class HomePageView(ListView):
+    model = Cmdr
+    template_name = 'home.html'

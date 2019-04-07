@@ -13,3 +13,5 @@
 5. In the urls.py at the project level, add 'include' to the import for django.urls
     + Import the URLs from the app level you've added by: 
          path('', include('[appName].urls')),
+6. In your settings.py at the project level, ensure you add the templates folder that you created, in the templates array at the 'DIR' key
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
