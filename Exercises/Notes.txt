@@ -109,3 +109,52 @@ Section 4: Project 3 - Interaction with Database
     Lecture 15: Create Read Update and Delete from Database
         - It's important to note that similar to handlebars or React mapping, we can add logic to our templates to loop and render HTML elements based off data from a database (or whatever else)
         - Remember that {% %} essentially 'escapes' the html, put whatever you want to repeat within that, and end it with {% endfor %}
+
+Section 5: Project 4 - Blog with static pages and Unique URL
+    Lecture 16 - Articles app creation
+    
+    Lecture 17 - ForeignKey and ManyToOne relationships
+        + We created an article model inside the models.py file
+    
+    Lecture 18 - Adding articles in database
+        + We run a makemigrations for the articles app to include the class we made
+        + We then run a migration for the whole app
+        + We created superuser admin admin for this.
+        + We also needed to add the model created to the admin.py by importing it from .models, and registering it.
+        + Lastly, we added two articles of our choice within the admin interface on the app.
+    
+    Lecture 19 - Configuring URLs
+        + Now instead of the default Django page, we need to point it to our app.
+        + In our urls.py at the project level, we included the URLs we are about to create in the articles app.
+        + We created another urls.py within our application.
+            + In this, make sure you import all of your views.
+        + In our views.py, we created a ArticleListView which will use our Article model, and use a home.html template.
+            - Create this inside of a new templates folder at the project level
+            - We also created a base.html.
+        + Lastly, make sure you incorporate these new templates into the settings.py file at the project level inside the TEMPLATES arr.
+
+    Lecture 20 - Setting up Home Page
+        + We added some boilerplate html to base.html with a content block.
+        + We extended base.html in home.html, and created another block content to loop through the articles and print them.
+
+    Lecture 21 - Adding Static files for CSS
+        + Created a 'static' folder at project level (similar to templates) and included that in a STATICFILES_DIR array at the bottom of the settings.py file.
+        + Added a css folder inside the static folder along with a css file to add.
+            - Added some styles.
+        + Linked that css file up with the basestyles.html file with a Link tag. In the href you have to use curly braces and the two percent signs like so: 
+            {% static 'css/basestyles.css' %}
+        + At the top of the html file, you need to give it a heads up that it needs to expect a static css file with: 
+            {% load staticfiles %}
+    
+    Lecture 22 - Unique URL for articles
+        + created a new detailed view for the articles.
+            - Changed the context name to articles so that we can use that when we need to access them.
+        + added detail.html along with some html and script to templates folder.
+        + Add the url to the app level urls.py like so
+             path('article/<int:pk>', views.ArticleDetailView.as_view(), name='article'),
+             - pk is primary key which django automatically generates
+
+Section 6
+    Project 5 - Handling forms and taking input from user
+        Lecture 23: Handling user input via forms - setup
+            - 
