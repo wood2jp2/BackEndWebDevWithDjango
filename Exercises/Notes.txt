@@ -157,4 +157,24 @@ Section 5: Project 4 - Blog with static pages and Unique URL
 Section 6
     Project 5 - Handling forms and taking input from user
         Lecture 23: Handling user input via forms - setup
-            - 
+            - Made a folder '05projectfive' and started a project within.
+            - Navigate into project and migrate the database.
+            - Start a new application.
+            - Go to the project settings.py file and include the new app.
+            - add a urls.py to the app level along with any routes you plan to use from your views.py file. We will be adding these in the next lecture.
+        
+        Lecture 24: Preparing models and admin
+            - We added a Video model with a title, datetime, and description fields. Lastly, we added it's constructor __str__ function.
+            - We imported and registered this new model in the admin.py file.
+
+        Lecture 25: Fixing views and other issues
+            - created a templates and static folders, as our app will be completely separate from the rest of the project.
+                + added a videorequest folder in each of those folders, per standard practice.
+            - added static files and templates to the respective folders from his github.
+            - Add views in a functional manner (not class-based).
+            - make sure you import . from views at your app level urls.py file.
+            - now you can make your migration at the app level, then at the project level.
+            - Lastly, you'll need to incorporate your static folder files into their respective HTML templates by taking care of the link tag(s) and the static injection at the top of each template.
+            - Also make your superuser. (admin/admin)
+
+        Lecture 26: Making templates look great and static files
