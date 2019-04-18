@@ -177,4 +177,26 @@ Section 6
             - Lastly, you'll need to incorporate your static folder files into their respective HTML templates by taking care of the link tag(s) and the static injection at the top of each template.
             - Also make your superuser. (admin/admin)
 
+NOTE: Urls take a url endpoint being hit, and determines which VIEW to send the user. Each VIEW determines which html TEMPLATE to send.
+
         Lecture 26: Making templates look great and static files
+            - Migrations are available once run, which are essentially database queries that are run for you. You cannot just manually change these and expect results.
+            - Changing a model after migration: 
+                + Make the change. Run your makemigrations command (this creates a new migration in the migrations folder). Then officially migrate the whole project.
+                + Note that the first migration is a dependency of the second.
+            - Incorporating static files into templates:
+                + Ensure that {% load static %} is at the top of each.
+                + You can then import files within the static folder. {% static 'staticSubfolder/yourFile.css' %}
+            - We changed the href field for the Add Video form to {% url 'vrform' %}
+                + Remember vrform was the same name that we gave to our vrform url in our urls.py.
+                + Whats the point of names? When I changed it, the link still led me to the page...?
+            - We also manually added a Video using the admin dashboard.
+
+        Lecture 27: Fetching data from a database
+            - First thing we need to do: go to views.py and import the model that we intend to use (Video), so that we may use that model to display to our templates while looping over all the videos in our db.
+            - Add that to the route (index) and assign it to a variable. You can order the videos by a field with the .order_by('fieldNameOnClass')
+            - Store that as a key value pair in context in that same route and pass it to the render function.
+            - The variable you store the videos in is what you have to reference in your html template inside your logic loop. Inside your logic you can access the fields on the models with their respective names.
+
+        Lecture 28: Interaction with Django forms
+            - 
