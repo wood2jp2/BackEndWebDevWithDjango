@@ -199,4 +199,17 @@ NOTE: Urls take a url endpoint being hit, and determines which VIEW to send the 
             - The variable you store the videos in is what you have to reference in your html template inside your logic loop. Inside your logic you can access the fields on the models with their respective names.
 
         Lecture 28: Interaction with Django forms
-            - 
+            - We will have to add another python file for the form at the app level (videoRequest)
+                + It will take the form of a class within forms.py.
+            - What I think the idea is is basically to hook up your form(s) to a particular template (html within a template file). This in turn basically becomes a class with data fields connected to it that can be passed around.
+            - add {% csrf_token %} to forms containing action methods for security inside the form.
+            - You're essentially replacing hard coded html with class fields on your forms outlined in forms.py. 
+
+        Lecture 29: Taking input from user and storing it in database.
+            - Forms are classes in forms.py, being rendered by the html templates in the templates folder, served by the views.py file.
+            - When the request is thrown back, it will hit the view, where you need to extract the fields needed into a new model (Video, in this case).
+            - Fields in the request are coming from what you name them in the forms.py
+
+Section 7 - Project 6: A CRUD blog from user input
+    Lecture 30: Jump Start of CRUD project
+        - 
