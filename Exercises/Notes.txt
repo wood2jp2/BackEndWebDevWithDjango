@@ -212,4 +212,13 @@ NOTE: Urls take a url endpoint being hit, and determines which VIEW to send the 
 
 Section 7 - Project 6: A CRUD blog from user input
     Lecture 30: Jump Start of CRUD project
-        - 
+        - Copied and pasted 'website' from project4.
+        - Added a div with an anchor to base.html.
+            + We need to add the URL to urls.py, with a name corresponding to what we put inside the href field (new_article)
+            + But we need a matching class-based view due to us putting 'new_article' in the anchor href.
+        
+    Lecture 31: Reusing admin fields in web page
+        - We're importing a view this time (instead of creating our own like last project)
+        - We imported CreateView from django, and outlined the fields model (Article), template_name (new_article.html, which we need to create), and fields
+        - Add the article_new.html to templates along with a form with POST action and csrf token within
+        - You need to go back to the Article model in order to redirect users once the form is submitted to the home page using reverse()
