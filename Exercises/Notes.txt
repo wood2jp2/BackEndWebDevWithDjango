@@ -222,3 +222,28 @@ Section 7 - Project 6: A CRUD blog from user input
         - We imported CreateView from django, and outlined the fields model (Article), template_name (new_article.html, which we need to create), and fields
         - Add the article_new.html to templates along with a form with POST action and csrf token within
         - You need to go back to the Article model in order to redirect users once the form is submitted to the home page using reverse()
+
+    Lecture 32: Update from database
+        - Next we need to be able to edit an article, which means that we need to make sure that we pass something unique along with the article information when we click on its title.
+            + This is done through the primary key (PKI)
+        - We went into the detail.html (template for each articles details) and added a link with a URL. We also gave that link an argument, which was the article's primary key.
+        - Now we need to create a new template to render when that link is hit (article_edit.html)
+            + Don't forget csrf token in ALL forms
+        - Next, create the view for it. Go to your views.py, and there is an UpdateView template to import.
+            + Since we don't need ALL fields, we use an array to hold the fields we want.
+            + These fields come from the model.
+
+    Lecture 33: Delete from database and reverse lazy URLs
+        - Now we must figure out the delete functionality
+        - you must add a link on another page to the template, so we did that by adding a delete button to the article detail.html page.
+        - we first added an article_delete.html template with block content and CSRF token stuff.
+            + form
+        - Now that we have a link to access the template, we need to outline the url in our urls.py.
+            + Make sure you name it whatever you outlined in the link.
+        - Now that we've outlined the url, we need a class-based view. 
+            + So we made ArticleDeleteView and imported the deleteView thing from django.urls
+            + reverse_lazy allows us to redirect to a page AFTER the action is completed.
+
+Section 8 - Project 7 - A TODO list with sqlite3
+    Lecture 34: How we will take down this TODO project
+        - 

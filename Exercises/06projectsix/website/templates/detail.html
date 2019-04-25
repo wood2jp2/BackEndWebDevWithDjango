@@ -5,4 +5,9 @@
         <h2>{{ articles.title }}</h2>
         <p>{{ articles.text }}</p>
     </div>
+
+    <!-- These url names in quotes get their NAME from the urls.py names outlined in the list of ours -->
+    <h4><a href="{% url 'article_edit' articles.pk %}">Edit this post</a></h4>
+    <h4><a href="{% url 'article_delete' articles.pk %}">Delete this post</a></h4>
+
 {% endblock content %}
