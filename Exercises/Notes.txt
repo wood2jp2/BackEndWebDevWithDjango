@@ -246,4 +246,45 @@ Section 7 - Project 6: A CRUD blog from user input
 
 Section 8 - Project 7 - A TODO list with sqlite3
     Lecture 34: How we will take down this TODO project
+        - First thing we do is create a folder for project 07
+        - Then we initialize the new project with django-admin startproject [projectname]
+        - Then we change directories into the project (make sure you are at the manage.py level) and initialize the todo app with python3 manage.py startapp [appname]
+        - Now we have to register our app at the project level by adding the appname (todo) to the list of registered apps at the project level list.
+            + You also must register the urls for the todo app. Make sure you import 'include' and add that to the project urls.py.
+            + Add the urls.py file to your app level.
+        - In your urls.py at the app level, import views.
+        - We are, in our views, defining an index function which returns a simple HTTP response 
+
+    Lecture 35: Create models for database
+        - We create a todo class model for the database and outline the fields we want to include, what type of field they are, and then have the model return itself.
+        - Once you are done with your model, import and register it into the admin.py file.
+        - Then we run our migrations
+            + python3 manage.py migrate
+            + python3 manage.py makemigrations [appname]
+            + python3 manage.py migrate
+        - Create your superuser (admin/admin)
+        - We logged in as the admin user and added a couple of todos manually
+    
+    Lecture 36: setting up templates and static files
+        - We added a templates and static folders with an app folder within each, and moved our static files into them.
+        - Then, we went to our index.html and loaded static files at the top and changed the paths within
+        - Last, we changed our home page response to simply serve the static index.html page from the templates folder using render and passing in the request and path to template.
+
+    Lecture 37: Adding a todo and decorator
+        - We started by adding a forms.py in which we outlined a TodoForm. What this should do is mimic the template html (including classes, placeholders, etc)
+        - This is the HTML template portion that should interface similarly with your Todo model in models.py
+        - essentially what it seems like we are doing is, within the views.py, we are creating a whole schema to display and grab objects from the database at the same time. When the index.html route is hit, we understand that the Todo objects from the database need to be grabbed and ordered. We also realize that we need a form to display to the user, and we can consolidate these and pass them down to the user through context.
+        - We used a decorator on and added another view that allows todos to be added and saved through a POST method.
+
+    Lecture 38: Finishing up TODO
+        - Next, we have to make a view for completing a todo.
+            + We're going to do this by accessing the primary key of the objects on the Todo model within the database from the request.
+            + We then simply change the completed attribute we defined on the model to True.
+        - We then outline a delete todo view and access any completed todos with a filter, and delete them, then redirect to the index.html
+        - Once we are done, we need to add these things to the urls.py.
+            + This still won't work yet.
+            + We need to revise our index.html template to include the form that we built.
+
+Section 9 - Project 8: Login, Logout and SignUp
+    Lecture 39: Setup URL for Login
         - 
