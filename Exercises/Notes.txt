@@ -287,4 +287,20 @@ Section 8 - Project 7 - A TODO list with sqlite3
 
 Section 9 - Project 8: Login, Logout and SignUp
     Lecture 39: Setup URL for Login
+        - authentication should be thought of before an app is developed. What do you want to show a user who is NOT logged in, and what do you want to show them when they are?
+        - For this project, we are going to use the website from Project 4 as a template.
+        - The auth portion of django is actually a pre-installed functionality with django (similar to admin)
+        - With whatever route you choose for your accounts endpoint, you must 
+            + include('django.contrib.auth.urls') should be the second argument.
+
+    Lecture 40: Having a login view
+        - So because we added the accounts endpoint, now Django will look for a login template in your templates.
+            + Here we added a new 'registration' folder to the templates folder along with a login.html file inside. 
+                = These are the default names for the files that Django looks for.
+        - In login.html we added template stuffs and a form for login, with a submit (login) button
+            + we use {{ form.as_p }} tp format the form as a paragraph tag..?
+        - At the bottom of the settings.py file, we need to specify where to redirect the user once they've logged in successfully.
+            + In this case, we are redirecting them to the articles home 'home'.
+    
+    Lecture 41: A working login and Logout
         - 
